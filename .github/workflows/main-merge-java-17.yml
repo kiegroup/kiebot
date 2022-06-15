@@ -3,7 +3,7 @@ name: Kogibot - [main] Java 17 build
 on:
   push:
     branches:
-      - master
+      - main
 
 jobs:
   build:
