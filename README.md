@@ -8,12 +8,12 @@ If you want to learn more about Quarkus, please visit its website: https://quark
 
 Create e .env file on the project's root directory with the following environment variables:
 
-```java
+```
 QUARKUS_GITHUB_APP_APP_ID=<the numeric app id>
-        QUARKUS_GITHUB_APP_APP_NAME=<the name of your app>
-        QUARKUS_GITHUB_APP_WEBHOOK_PROXY_URL=<your Smee.io channel URL>
-        QUARKUS_GITHUB_APP_WEBHOOK_SECRET=<your webhook secret>
-        QUARKUS_GITHUB_APP_PRIVATE_KEY=-----BEGIN RSA PRIVATE KEY-----\
+QUARKUS_GITHUB_APP_APP_NAME=<the name of your app>
+QUARKUS_GITHUB_APP_WEBHOOK_PROXY_URL=<your Smee.io channel URL>
+QUARKUS_GITHUB_APP_WEBHOOK_SECRET=<your webhook secret>
+QUARKUS_GITHUB_APP_PRIVATE_KEY=-----BEGIN RSA PRIVATE KEY-----\
 <your private key>                          \
         -----END RSA PRIVATE KEY-----
 ```
