@@ -26,9 +26,20 @@ public class PullRequestListener {
         Labels.createMissingLabels(prPayLoad.getRepository());
         // Add initial labels, needs review, what else?
 
-        // First time contributor? add a cool message;
+        // First time contributor? add a cool message; and link to a some starting guide to the project.
+        // can be set on the clientConfig as well on the target repo
+        // Use the util.FirstTimeContribution class to implement it
         prPayLoad.getPullRequest().comment("Hi from kogibot.");
 
+        // check the PR patterns, look for a configuration file on the target repository
+        // e.g. .kogibot.yaml
+        // it can contain the desire pattern for:
+        // 1 - Tittle pattern
+        // 2 - Description patter
+        // 3 - PR commit message
+        // Bot will automatically not approve this PR until this condition is not satisfied.
+        // Use the util.PullRequestPatternAnalyzer class to implement it.
+        // Client config is held on the config.ClientConfig class.
     }
 
     public void onRequestReview(@PullRequestReviewComment.Created @PullRequestReviewComment.Edited GHEventPayload.PullRequestReviewComment comment) throws IOException {

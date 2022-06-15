@@ -33,5 +33,5 @@ This project uses a similar Java code style than https://github.com/kiegroup/dro
 
 TODO
  - add license header and configure maven plugin to check it
- - add maven checkstyle plugin based on the kiegroup java profile
+ - implement missing features
  - 
