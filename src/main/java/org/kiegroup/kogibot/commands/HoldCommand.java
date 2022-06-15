@@ -9,16 +9,17 @@ import io.quarkiverse.githubapp.command.airline.CommandOptions;
 import org.kohsuke.github.GHEventPayload;
 import org.kohsuke.github.GHPullRequest;
 
-@Cli(name = "/milestone",
+@Cli(name = "/hold",
         commands = {
-                MilestoneCommand.MilestoneAddCommand.class,
-                MilestoneCommand.MilestoneRemoveCommand.class},
-        defaultCommand = MilestoneCommand.MilestoneAddCommand.class)
+                HoldCommand.HoldAddCommand.class,
+                HoldCommand.HoldAddCommand.class},
+        defaultCommand = HoldCommand.HoldAddCommand.class)
 @CliOptions(defaultCommandOptions = @CommandOptions(scope = CommandOptions.CommandScope.PULL_REQUESTS))
-public class MilestoneCommand {
+//@Team ({"GATEKEEPERS", "AUTHORS"})
+public class HoldCommand {
 
-    @Command(name = "add", description = "Adds milestone")
-    static class MilestoneAddCommand implements PullRequestScopedCommands {
+    @Command(name = "add", description = "Put the Pull Request on hold status")
+    static class HoldAddCommand implements PullRequestScopedCommands {
 
         @Override
         public void run(GHEventPayload.IssueComment issueCommentPayload) throws IOException {
@@ -27,15 +28,15 @@ public class MilestoneCommand {
                 GHPullRequest pullRequest = issueCommentPayload.getRepository()
                         .getPullRequest(issueCommentPayload.getIssue().getNumber());
 
-                pullRequest.comment("add milestone XXXX - WIP");
+                pullRequest.comment("add hold and not approved labels and block merge - WIP");
                 // add milestone
 
             }
         }
     }
 
-    @Command(name = "remove", description = "Removes milestone")
-    static class MilestoneRemoveCommand implements PullRequestScopedCommands {
+    @Command(name = "cancel", description = "Removes milestone")
+    static class HoldCancelCommand implements PullRequestScopedCommands {
 
         @Override
         public void run(GHEventPayload.IssueComment issueCommentPayload) throws IOException {
@@ -44,11 +45,8 @@ public class MilestoneCommand {
                 GHPullRequest pullRequest = issueCommentPayload.getRepository()
                         .getPullRequest(issueCommentPayload.getIssue().getNumber());
 
-                pullRequest.comment("remove  milestone - WIP");
-                // remove milestone
-                pullRequest.getMilestone().delete();
+                pullRequest.comment("remove hold cancel label and unblock merge - WIP");
             }
         }
     }
 }
-
