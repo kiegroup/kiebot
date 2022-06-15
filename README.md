@@ -18,6 +18,9 @@ QUARKUS_GITHUB_APP_APP_ID=<the numeric app id>
         -----END RSA PRIVATE KEY-----
 ```
 
+This bot has a Web Console to see the payloads received by the bot.
+Can be accessed using the URL http://localhost:8080/replay/
+
 ## Running the application in dev mode
 
 You can run your application in dev mode that enables live coding using:
