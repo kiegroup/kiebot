@@ -1,6 +1,7 @@
 package org.kiegroup.kogibot;
 
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 
 import javax.inject.Inject;
 
@@ -8,28 +9,32 @@ import io.quarkiverse.githubapp.event.IssueComment;
 import io.quarkiverse.githubapp.event.PullRequest;
 import io.quarkiverse.githubapp.event.PullRequestReviewComment;
 import org.jboss.logging.Logger;
+import org.kiegroup.kogibot.util.FirstTimeContribution;
 import org.kiegroup.kogibot.util.Labels;
 import org.kohsuke.github.GHEventPayload;
 import org.kohsuke.github.GHPullRequest;
-import org.kohsuke.github.GitHub;
 
 public class PullRequestListener {
 
     @Inject
     Logger log;
 
-    public void onOpenedPullRequest(@PullRequest.Opened @PullRequest.Synchronize GHEventPayload.PullRequest prPayLoad, GitHub gitHub) throws IOException {
+    public void onOpenedPullRequest(@PullRequest.Opened @PullRequest.Reopened @PullRequest.Synchronize GHEventPayload.PullRequest prPayLoad) throws IOException {
+        // check for existence of configuration file.
+        String text = new String(
+                prPayLoad.getRepository()
+                        .getFileContent(".kogibot-config.ymls", prPayLoad.getPullRequest().getHead().getRef())
+                        .read().readAllBytes(), StandardCharsets.UTF_8);
+        System.out.println("text from config " + text);
 
-        log.infov("test PR author: {0}", prPayLoad.getPullRequest().getUser());
-        log.info("adding labels");
-        // what happens if the labels already exists?
-        Labels.createMissingLabels(prPayLoad.getRepository());
-        // Add initial labels, needs review, what else?
+        // Create Default Labels if not existing on target repository
+        Labels.processLabels(prPayLoad.getNumber(), prPayLoad.getRepository());
 
         // First time contributor? add a cool message; and link to a some starting guide to the project.
         // can be set on the clientConfig as well on the target repo
         // Use the util.FirstTimeContribution class to implement it
-        prPayLoad.getPullRequest().comment("Hi from kogibot.");
+        FirstTimeContribution.firstTimeContributionChecker(prPayLoad.getRepository());
+        prPayLoad.getPullRequest().comment("Hi from " + prPayLoad.getPullRequest().getUser().getLogin());
 
         // check the PR patterns, look for a configuration file on the target repository
         // e.g. .kogibot.yaml
@@ -46,7 +51,6 @@ public class PullRequestListener {
 
         // do something
     }
-
 
     // list for comment
     public void onPullRequestComments(@IssueComment.Created GHEventPayload.IssueComment issueCommentPayload) throws IOException {

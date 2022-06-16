@@ -12,6 +12,6 @@ public class KogitoBot {
     Logger log;
 
     void init(@Observes StartupEvent startupEvent) {
-        log.info("››› Kogibot is starting...");
+        log.debug("››› Kogibot is starting...");
     }
 }
