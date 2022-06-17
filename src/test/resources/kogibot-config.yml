@@ -1,0 +1,27 @@
+review:
+  - paths:
+    - cmd/**
+    - api/**
+    - controllers/**
+    - internal/**
+    - core/**
+    reviewers:
+    - ricardozanini
+    - spolti
+    - davidesalerno
+  - paths:
+    - test/**
+    reviewers:
+    - sutaakar
+    - radtriste
+  - paths:
+    - Jenkinsfile*
+    - .ci
+    - .github
+    reviewers:
+    - radtriste
+    - msmagnanijr
+    default:
+    - ricardozanini
+    - spolti
+    - davidesalerno

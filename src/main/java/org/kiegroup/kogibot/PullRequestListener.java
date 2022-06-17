@@ -1,31 +1,39 @@
 package org.kiegroup.kogibot;
 
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 
+import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 
 import io.quarkiverse.githubapp.event.IssueComment;
 import io.quarkiverse.githubapp.event.PullRequest;
 import io.quarkiverse.githubapp.event.PullRequestReviewComment;
 import org.jboss.logging.Logger;
+import org.kiegroup.kogibot.config.ClientConfigParser;
+import org.kiegroup.kogibot.config.pojo.ClientConfiguration;
 import org.kiegroup.kogibot.util.FirstTimeContribution;
 import org.kiegroup.kogibot.util.Labels;
 import org.kohsuke.github.GHEventPayload;
 import org.kohsuke.github.GHPullRequest;
 
+@ApplicationScoped
 public class PullRequestListener {
 
     @Inject
     Logger log;
 
+    @Inject
+    ClientConfigParser config;
+
     public void onOpenedPullRequest(@PullRequest.Opened @PullRequest.Reopened @PullRequest.Synchronize GHEventPayload.PullRequest prPayLoad) throws IOException {
         // check for existence of configuration file.
-        String text = new String(
-                prPayLoad.getRepository()
-                        .getFileContent(".kogibot-config.ymls", prPayLoad.getPullRequest().getHead().getRef())
-                        .read().readAllBytes(), StandardCharsets.UTF_8);
-        System.out.println("text from config " + text);
+        ClientConfiguration clientConfig = config.parseConfigurationFile(prPayLoad.getRepository());
+        if (null != clientConfig) {
+            // add new util class Reviewers to do the checks and review requests
+            clientConfig.getReview().stream().forEach(r -> System.out.println(r.getPaths() + " -- " + r.getReviewers()));
+            // add reviewers based conf file.
+            //
+        }
 
         // Create Default Labels if not existing on target repository
         Labels.processLabels(prPayLoad.getNumber(), prPayLoad.getRepository());
