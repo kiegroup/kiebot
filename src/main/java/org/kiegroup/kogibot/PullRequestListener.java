@@ -62,19 +62,17 @@ public class PullRequestListener {
 
     // list for comment
     public void onPullRequestComments(@IssueComment.Created GHEventPayload.IssueComment issueCommentPayload) throws IOException {
-        GHPullRequest pullRequest = null;
-
-        log.infov("aaaaa {0}", issueCommentPayload.getComment().getUser().getType());
-        log.infov("CVCCCC {0}", issueCommentPayload.getIssue().isPullRequest() && !issueCommentPayload.getComment().getUser().getType().equals("Bot"));
-        if (issueCommentPayload.getIssue().isPullRequest() && !issueCommentPayload.getComment().getUser().getType().equals("Bot")) {
-            pullRequest = issueCommentPayload.getRepository()
-                    .getPullRequest(issueCommentPayload.getIssue().getNumber());
-            log.infov("test PR author: {0}", pullRequest.getUser());
-            pullRequest.comment("Hi from kogibot - comments");
-
-            log.info("adding labels");
-            // create the missing labels on the same function to add it?
-            // Labels.craeteMissingLabels(pullRequest.getRepository());
-        }
+//        GHPullRequest pullRequest = null;
+//
+//        if (issueCommentPayload.getIssue().isPullRequest() && !issueCommentPayload.getComment().getUser().getType().equals("Bot")) {
+//            pullRequest = issueCommentPayload.getRepository()
+//                    .getPullRequest(issueCommentPayload.getIssue().getNumber());
+//            log.infov("test PR author: {0}", pullRequest.getUser());
+//            pullRequest.comment("Hi from kogibot - comments");
+//
+//            log.info("adding labels");
+//            // create the missing labels on the same function to add it?
+//            // Labels.craeteMissingLabels(pullRequest.getRepository());
+//        }
     }
 }

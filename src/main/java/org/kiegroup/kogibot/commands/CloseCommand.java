@@ -34,8 +34,4 @@ public class CloseCommand {
         }
     }
 
-
-    // add custom help message
-
-    // block merge - how can we do this?
 }

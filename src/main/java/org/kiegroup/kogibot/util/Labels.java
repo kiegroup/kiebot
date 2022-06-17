@@ -28,12 +28,17 @@ public class Labels {
             }
 
             // if the label is flagged as required, add it on the target Pull Request
-            if (lbl.isRequired()) {
+            if (lbl.required) {
                 ghRepository.getPullRequest(id).addLabels(lbl.name);
                 log.debugv("Setting default label [{0}].", lbl.name);
             }
         }
     }
+
+    public static void addLabel() {
+
+    }
+
 
     public enum DefaultLabels {
         // keep in alphabetical order
@@ -64,12 +69,8 @@ public class Labels {
             return Arrays.asList(DefaultLabels.values());
         }
 
-        public boolean isRequired() {
-            return required;
-        }
-
         public String getName() {
-            return name;
+            return this.name;
         }
     }
 }

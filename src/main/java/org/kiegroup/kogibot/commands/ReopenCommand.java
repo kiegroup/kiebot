@@ -26,16 +26,10 @@ public class ReopenCommand {
             if (issueCommentPayload.getIssue().isPullRequest()) {
                 GHPullRequest pullRequest = issueCommentPayload.getRepository()
                         .getPullRequest(issueCommentPayload.getIssue().getNumber());
-
-                // add a message about the PR closure.
                 pullRequest.reopen();
-
+                // request review again.
+                // TODO /close deleteBranch
             }
         }
     }
-
-
-    // add custom help message
-
-    // block merge - how can we do this?
 }
