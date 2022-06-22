@@ -12,7 +12,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.kiegroup.kogibot.config.KogibotConfiguration;
 
-public class ReviewersTest {
+public class MatchingPathsValuesUtilsTest {
 
     @Test
     public void testContainsPath() throws IOException {
