@@ -16,7 +16,8 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-        "review"
+        "review",
+        "defaultReviewers"
 })
 @Generated("jsonschema2pojo")
 @ApplicationScoped
@@ -24,6 +25,8 @@ public class ClientConfiguration {
 
     @JsonProperty("review")
     private List<Review> review = null;
+    @JsonProperty("defaultReviewers")
+    private List<String> defaultReviewers = null;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
@@ -35,6 +38,16 @@ public class ClientConfiguration {
     @JsonProperty("review")
     public void setReview(List<Review> review) {
         this.review = review;
+    }
+
+    @JsonProperty("defaultReviewers")
+    public List<String> getDefaultReviewers() {
+        return defaultReviewers;
+    }
+
+    @JsonProperty("defaultReviewers")
+    public void setDefaultReviewers(List<String> defaultReviewers) {
+        this.defaultReviewers = defaultReviewers;
     }
 
     @JsonAnyGetter

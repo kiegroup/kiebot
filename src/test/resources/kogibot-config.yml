@@ -1,26 +1,27 @@
 review:
   - paths:
-    - cmd/**
-    - api/**
-    - controllers/**
-    - internal/**
-    - core/**
+    - cmd/*
+    - api/\w*/file2.go
+    - controllers/*
+    - internal/*
+    - core/*
     reviewers:
-    - ricardozanini
-    - spolti
-    - davidesalerno
+    - user1
+    - user2
+    - user3
   - paths:
-    - test/**
+    - test/*
     reviewers:
-    - sutaakar
-    - radtriste
+    - user5
+    - user6
   - paths:
     - Jenkinsfile*
     - .ci
     - .github
     reviewers:
-    - radtriste
-    default:
-    - ricardozanini
-    - spolti
-    - davidesalerno
+    - user4
+defaultReviewers:
+    - user1
+    - user2
+    - user3
+    - user10

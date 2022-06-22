@@ -13,8 +13,9 @@ import org.kiegroup.kogibot.config.ClientConfigParser;
 import org.kiegroup.kogibot.config.pojo.ClientConfiguration;
 import org.kiegroup.kogibot.util.FirstTimeContribution;
 import org.kiegroup.kogibot.util.Labels;
+import org.kiegroup.kogibot.util.Reviewers;
 import org.kohsuke.github.GHEventPayload;
-import org.kohsuke.github.GHPullRequest;
+import org.kohsuke.github.GitHub;
 
 @ApplicationScoped
 public class PullRequestListener {
@@ -23,16 +24,14 @@ public class PullRequestListener {
     Logger log;
 
     @Inject
-    ClientConfigParser config;
+    ClientConfigParser configParser;
 
-    public void onOpenedPullRequest(@PullRequest.Opened @PullRequest.Reopened @PullRequest.Synchronize GHEventPayload.PullRequest prPayLoad) throws IOException {
+    public void onOpenedPullRequest(@PullRequest.Opened @PullRequest.Reopened @PullRequest.Synchronize GHEventPayload.PullRequest prPayLoad, GitHub github) throws IOException {
         // check for existence of configuration file.
-        ClientConfiguration clientConfig = config.parseConfigurationFile(prPayLoad.getRepository());
-        if (null != clientConfig) {
-            // add new util class Reviewers to do the checks and review requests
-            clientConfig.getReview().stream().forEach(r -> System.out.println(r.getPaths() + " -- " + r.getReviewers()));
-            // add reviewers based conf file.
-            //
+        ClientConfiguration config = configParser.parseConfigurationFile(prPayLoad.getRepository());
+        if (null != config) {
+            // if there is a configuration file, check for the reviewers, if found set.
+            Reviewers.addReviewers(config, prPayLoad.getPullRequest(), github);
         }
 
         // Create Default Labels if not existing on target repository
