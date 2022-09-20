@@ -1,25 +1,22 @@
-package org.kiegroup.kogibot.commands;
+package org.kiegroup.kogibot.cli.commands.legacy;
 
 import java.io.IOException;
 
-import com.github.rvesse.airline.annotations.Cli;
 import com.github.rvesse.airline.annotations.Command;
-import io.quarkiverse.githubapp.command.airline.CliOptions;
-import io.quarkiverse.githubapp.command.airline.CommandOptions;
+import org.kiegroup.kogibot.cli.commands.PullRequestScopedCommands;
 import org.kohsuke.github.GHEventPayload;
 import org.kohsuke.github.GHPullRequest;
 
-@Cli(name = "/hold",
-        commands = {
-                HoldCommand.HoldAddCommand.class,
-                HoldCommand.HoldAddCommand.class},
-        defaultCommand = HoldCommand.HoldAddCommand.class)
-@CliOptions(defaultCommandOptions = @CommandOptions(scope = CommandOptions.CommandScope.PULL_REQUESTS))
-//@Team ({"GATEKEEPERS", "AUTHORS"})
-public class HoldCommand {
+// @Cli(name = "/milestone",
+//         commands = {
+//                 MilestoneCommand.MilestoneAddCommand.class,
+//                 MilestoneCommand.MilestoneRemoveCommand.class},
+//         defaultCommand = MilestoneCommand.MilestoneAddCommand.class)
+// @CliOptions(defaultCommandOptions = @CommandOptions(scope = CommandOptions.CommandScope.PULL_REQUESTS))
+public class MilestoneCommand {
 
-    @Command(name = "add", description = "Put the Pull Request on hold status")
-    static class HoldAddCommand implements PullRequestScopedCommands {
+    @Command(name = "add", description = "Adds milestone")
+    static class MilestoneAddCommand implements PullRequestScopedCommands {
 
         @Override
         public void run(GHEventPayload.IssueComment issueCommentPayload) throws IOException {
@@ -28,15 +25,15 @@ public class HoldCommand {
                 GHPullRequest pullRequest = issueCommentPayload.getRepository()
                         .getPullRequest(issueCommentPayload.getIssue().getNumber());
 
-                pullRequest.comment("add hold and not approved labels and block merge - WIP");
+                pullRequest.comment("add milestone XXXX - WIP");
                 // add milestone
 
             }
         }
     }
 
-    @Command(name = "cancel", description = "Removes milestone")
-    static class HoldCancelCommand implements PullRequestScopedCommands {
+    @Command(name = "remove", description = "Removes milestone")
+    static class MilestoneRemoveCommand implements PullRequestScopedCommands {
 
         @Override
         public void run(GHEventPayload.IssueComment issueCommentPayload) throws IOException {
@@ -45,8 +42,11 @@ public class HoldCommand {
                 GHPullRequest pullRequest = issueCommentPayload.getRepository()
                         .getPullRequest(issueCommentPayload.getIssue().getNumber());
 
-                pullRequest.comment("remove hold cancel label and unblock merge - WIP");
+                pullRequest.comment("remove  milestone - WIP");
+                // remove milestone
+                pullRequest.getMilestone().delete();
             }
         }
     }
 }
+

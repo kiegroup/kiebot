@@ -1,18 +1,16 @@
-package org.kiegroup.kogibot.commands;
+package org.kiegroup.kogibot.cli.commands.legacy;
 
 import java.io.IOException;
 
-import com.github.rvesse.airline.annotations.Cli;
 import com.github.rvesse.airline.annotations.Command;
-import io.quarkiverse.githubapp.command.airline.CliOptions;
-import io.quarkiverse.githubapp.command.airline.CommandOptions;
+import org.kiegroup.kogibot.cli.commands.PullRequestScopedCommands;
 import org.kohsuke.github.GHEventPayload;
 import org.kohsuke.github.GHPullRequest;
 
-@Cli(name = "/reopen",
-        commands = {ReopenCommand.ReopenPullRequestCommand.class},
-        defaultCommand = ReopenCommand.ReopenPullRequestCommand.class)
-@CliOptions(defaultCommandOptions = @CommandOptions(scope = CommandOptions.CommandScope.PULL_REQUESTS))
+// @Cli(name = "/reopen",
+//         commands = {ReopenCommand.ReopenPullRequestCommand.class},
+//         defaultCommand = ReopenCommand.ReopenPullRequestCommand.class)
+// @CliOptions(defaultCommandOptions = @CommandOptions(scope = CommandOptions.CommandScope.PULL_REQUESTS))
 //@Team ({"AUTHORS", "CONTRIBUTORS"})
 public class ReopenCommand {
 

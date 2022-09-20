@@ -1,4 +1,4 @@
-package org.kiegroup.kogibot.commands;
+package org.kiegroup.kogibot.cli.commands;
 
 import java.io.IOException;
 

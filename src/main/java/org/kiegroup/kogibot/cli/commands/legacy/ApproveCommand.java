@@ -1,24 +1,21 @@
-package org.kiegroup.kogibot.commands;
+package org.kiegroup.kogibot.cli.commands.legacy;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
-import com.github.rvesse.airline.annotations.Cli;
 import com.github.rvesse.airline.annotations.Command;
-import io.quarkiverse.githubapp.command.airline.CliOptions;
-import io.quarkiverse.githubapp.command.airline.CommandOptions;
-import org.kiegroup.kogibot.util.Labels;
+import org.kiegroup.kogibot.cli.commands.PullRequestScopedCommands;
 import org.kohsuke.github.GHEventPayload;
 import org.kohsuke.github.GHPullRequest;
 
-@Cli(name = "/approve",
-        commands = {
-                ApproveCommand.ApprovePullRequestCommand.class,
-                ApproveCommand.PullRequestNotApprovedCommand.class
-        },
-        defaultCommand = ApproveCommand.ApprovePullRequestCommand.class
-)
-@CliOptions(defaultCommandOptions = @CommandOptions(scope = CommandOptions.CommandScope.PULL_REQUESTS))
+// @Cli(name = "/approve",
+//         commands = {
+//                 ApproveCommand.ApprovePullRequestCommand.class,
+//                 ApproveCommand.PullRequestNotApprovedCommand.class
+//         },
+//         defaultCommand = ApproveCommand.ApprovePullRequestCommand.class
+// )
+// @CliOptions(defaultCommandOptions = @CommandOptions(scope = CommandOptions.CommandScope.PULL_REQUESTS))
 //@Team ({"AUTHORS", "CONTRIBUTORS"})
 public class ApproveCommand {
 
@@ -36,7 +33,7 @@ public class ApproveCommand {
                         .getPullRequest(issueCommentPayload.getIssue().getNumber());
 
                 pullRequest.comment("approved label will be added - WIP");
-                pullRequest.addLabels(Labels.DefaultLabels.APPROVED.getName());
+                // pullRequest.addLabels(Constants.DefaultLabels.APPROVED.getName());
             }
         }
     }
@@ -54,9 +51,9 @@ public class ApproveCommand {
                             .getPullRequest(issueCommentPayload.getIssue().getNumber());
                     pullRequest.comment("approve label will be removed and added the not approved - WIP");
 
-                    pullRequest.removeLabel(Labels.DefaultLabels.APPROVED.getName());
+                    // pullRequest.removeLabel(Constants.DefaultLabels.APPROVED.getName());
 
-                    pullRequest.addLabels(Labels.DefaultLabels.ON_HOLD_NOT_APPROVED.getName());
+                    // pullRequest.addLabels(Constants.DefaultLabels.ON_HOLD_NOT_APPROVED.getName());
 
                     // remove label and move the flow forward
                     // add label not approved
