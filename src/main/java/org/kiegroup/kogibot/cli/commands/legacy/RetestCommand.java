@@ -1,13 +1,11 @@
 package org.kiegroup.kogibot.cli.commands.legacy;
 
-import com.github.rvesse.airline.annotations.Cli;
-import com.github.rvesse.airline.annotations.Command;
-import io.quarkiverse.githubapp.command.airline.CliOptions;
-import io.quarkiverse.githubapp.command.airline.CommandOptions;
+import java.io.IOException;
+
 import org.kiegroup.kogibot.cli.commands.PullRequestScopedCommands;
 import org.kohsuke.github.GHEventPayload;
 
-import java.io.IOException;
+import com.github.rvesse.airline.annotations.Command;
 
 import static org.kiegroup.kogibot.util.Workflows.executeGHWorkflows;
 
@@ -17,8 +15,6 @@ import static org.kiegroup.kogibot.util.Workflows.executeGHWorkflows;
 // @CliOptions(defaultCommandOptions = @CommandOptions(scope = CommandOptions.CommandScope.PULL_REQUESTS))
 //@Team ({"AUTHORS", "CONTRIBUTORS"})
 public class RetestCommand {
-
-
 
     @Command(name = "retest", description = "Retest Pull Request", hidden = true)
     static class RetestPullRequestCommand implements PullRequestScopedCommands {

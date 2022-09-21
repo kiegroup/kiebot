@@ -1,5 +1,5 @@
 package org.kiegroup.kogibot.config;
 
-public class Labels extends AbstractMatchingPathsWithDefaults {
+public class Labels extends AbstractMatchingPathsValuesWithDefaults {
 
 }

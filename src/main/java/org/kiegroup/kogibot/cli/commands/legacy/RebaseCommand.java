@@ -2,10 +2,11 @@ package org.kiegroup.kogibot.cli.commands.legacy;
 
 import java.io.IOException;
 
-import com.github.rvesse.airline.annotations.Command;
 import org.kiegroup.kogibot.cli.commands.PullRequestScopedCommands;
 import org.kohsuke.github.GHEventPayload;
 import org.kohsuke.github.GHPullRequest;
+
+import com.github.rvesse.airline.annotations.Command;
 
 // @Cli(name = "/rebase",
 //         commands = {RebaseCommand.RebasePullRequestCommand.class},
@@ -13,7 +14,6 @@ import org.kohsuke.github.GHPullRequest;
 // @CliOptions(defaultCommandOptions = @CommandOptions(scope = CommandOptions.CommandScope.PULL_REQUESTS))
 //@Team ({"AUTHORS", "CONTRIBUTORS"})
 public class RebaseCommand {
-
 
     @Command(name = "rebase", description = "Reopen Pull Request", hidden = true)
     static class RebasePullRequestCommand implements PullRequestScopedCommands {
@@ -31,7 +31,6 @@ public class RebaseCommand {
             }
         }
     }
-
 
     // add custom help message
 

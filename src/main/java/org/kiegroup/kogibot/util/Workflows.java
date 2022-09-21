@@ -1,14 +1,14 @@
 package org.kiegroup.kogibot.util;
 
-import org.jboss.logging.Logger;
-import org.kohsuke.github.GHEventPayload;
-import org.kohsuke.github.GHPullRequest;
-import org.kohsuke.github.GHWorkflowRun;
-
 import java.io.IOException;
 import java.lang.invoke.MethodHandles;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import org.jboss.logging.Logger;
+import org.kohsuke.github.GHEventPayload;
+import org.kohsuke.github.GHPullRequest;
+import org.kohsuke.github.GHWorkflowRun;
 
 public class Workflows {
 
@@ -32,7 +32,7 @@ public class Workflows {
             for (GHWorkflowRun workflowRun : ghWorkflowRuns) {
                 workflowRun.rerun();
             }
-        }else{
+        } else {
             log.warn("Issue is not a PR");
         }
     }

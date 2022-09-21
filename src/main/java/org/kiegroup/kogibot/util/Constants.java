@@ -1,53 +1,60 @@
 package org.kiegroup.kogibot.util;
 
+import java.util.Arrays;
+import java.util.Optional;
+
 public class Constants {
 
-  public static final String KOGIBOT_CONFIGURATION_FILE = ".kogibot-config.yml";
+    public static final String KOGIBOT_CONFIG_FILE = ".kogibot-config.yml";
+    public static final String KOGITO_CONFIG_KEY_FIRST_TIME_CONTRIBUTOR = "first_time_contribute";
 
-  // public static enum DefaultLabels {
-  //   // keep in alphabetical order
-  //   CHERRY_PICK(false, "cherry-pick :cherries:", "8f81e2", "Pull Request is a cherry-pick"),
-  //   NEEDS_CHERRY_PICK(false, "needs cherry-pick :cherries:", "e57ec4", "This PR needs to be cherry-picked"),
-  //   ON_HOLD_NOT_APPROVED(false, "on-hold/not-approved :hand:", "5319E7", "Pull request is on Hold, not approved"),
-  //   APPROVED(false, "approved/ready :rocket:", "C2E0C6", "The pull request is approved"),
-  //   LGTM(false, "lgtm :eyes:", "BFD4F2", "Pull Request looks good"),
-  //   NEEDS_REVIEW(true, "needs review :mag:", "c12645", "Pull Request that needs reviewers"),
-  //   WIP(false, "WIP :construction_worker_man:", "f9f584", "Pull Request is on work in progress"),
-  //   OPERATOR(false, "operator :cloud:", "71afe2", "Pull Request related to kogito-operator code base"),
-  //   BDD_TESTS(false, "bdd-tests \uD83E\uDDEA", "bfdadc", "PR is related to the BDD test framework");
+    public enum DefaultLabels {
 
-  //   // Required labels will be added when a new Pull Request is created.
-  //   private final boolean required;
-  //   private final String name;
-  //   private final String color;
-  //   private final String description;
+        // keep in alphabetical order
+        CHERRY_PICK("cherry-pick :cherries:", "8f81e2", "Pull Request is a cherry-pick"),
+        ON_HOLD_NOT_APPROVED("on-hold/not-approved :hand:", "5319E7", "Pull request is on Hold, not approved"),
+        APPROVED("approved/ready :rocket:", "C2E0C6", "The pull request is approved"),
+        LGTM("lgtm :eyes:", "BFD4F2", "Pull Request looks good"),
+        NEEDS_REVIEW("needs review :mag:", "c12645", "Pull Request that needs reviewers"),
+        WIP("WIP :construction_worker_man:", "f9f584", "Pull Request is on work in progress");
 
-  //   DefaultLabels(boolean required, String name, String color, String description) {
-  //     this.required = required;
-  //     this.name = name;
-  //     this.color = color;
-  //     this.description = description;
-  //   }
+        // Required labels will be added when a new Pull Request is created.
+        private final String name;
+        private final String color;
+        private final String description;
 
-  //   public static List<DefaultLabels> allLabels() {
-  //     return Arrays.asList(DefaultLabels.values());
-  //   }
+        DefaultLabels(String name, String color, String description) {
+            this.name = name;
+            this.color = color;
+            this.description = description;
+        }
 
-  //   public String getName() {
-  //     return this.name;
-  //   }
+        public String getName() {
+            return this.name;
+        }
 
-  //   public boolean isRequired() {
-  //     return required;
-  //   }
+        public String getColor() {
+            return color;
+        }
 
-  //   public String getColor() {
-  //     return color;
-  //   }
+        public String getDescription() {
+            return description;
+        }
 
-  //   public String getDescription() {
-  //     return description;
-  //   }
+        public static boolean hasLabel(String name) {
+            return getOptionalLabel(name).isPresent();
+        }
 
-  // }
+        public static DefaultLabels getLabel(String name) {
+            return getOptionalLabel(name).get();
+        }
+
+        private static Optional<DefaultLabels> getOptionalLabel(String name) {
+            return Arrays.asList(DefaultLabels.values()).stream().filter(l -> l.getName().equals(name)).findFirst();
+        }
+
+    }
+
+    private Constants() {
+    }
 }
