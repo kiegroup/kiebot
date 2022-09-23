@@ -1,4 +1,4 @@
-package org.kiegroup.kogibot.cli.commands.legacy;
+package org.kiegroup.kogibot.cli.commands.wip;
 
 import java.io.IOException;
 
@@ -8,33 +8,19 @@ import org.kohsuke.github.GHPullRequest;
 
 import com.github.rvesse.airline.annotations.Command;
 
-// @Cli(name = "/milestone",
+// @Cli(name = "/lgtm",
 //         commands = {
-//                 MilestoneCommand.MilestoneAddCommand.class,
-//                 MilestoneCommand.MilestoneRemoveCommand.class},
-//         defaultCommand = MilestoneCommand.MilestoneAddCommand.class)
+//                 LgtmCommand.AddLgtmLabelCommand.class,
+//                 LgtmCommand.RemoveLgtmLabelCommand.class},
+//         defaultCommand = LgtmCommand.AddLgtmLabelCommand.class)
 // @CliOptions(defaultCommandOptions = @CommandOptions(scope = CommandOptions.CommandScope.PULL_REQUESTS))
-public class MilestoneCommand {
+//@Team ({"gatekeepers"})
+public class LgtmCommand {
 
-    @Command(name = "add", description = "Adds milestone")
-    static class MilestoneAddCommand implements PullRequestScopedCommands {
+    // define LgtmLabel on Label class
 
-        @Override
-        public void run(GHEventPayload.IssueComment issueCommentPayload) throws IOException {
-            // create annotation/predicate/default interface method @isPullRequest
-            if (issueCommentPayload.getIssue().isPullRequest()) {
-                GHPullRequest pullRequest = issueCommentPayload.getRepository()
-                        .getPullRequest(issueCommentPayload.getIssue().getNumber());
-
-                pullRequest.comment("add milestone XXXX - WIP");
-                // add milestone
-
-            }
-        }
-    }
-
-    @Command(name = "remove", description = "Removes milestone")
-    static class MilestoneRemoveCommand implements PullRequestScopedCommands {
+    @Command(name = "add", description = "Adds lgtm label")
+    static class AddLgtmLabelCommand implements PullRequestScopedCommands {
 
         @Override
         public void run(GHEventPayload.IssueComment issueCommentPayload) throws IOException {
@@ -43,10 +29,30 @@ public class MilestoneCommand {
                 GHPullRequest pullRequest = issueCommentPayload.getRepository()
                         .getPullRequest(issueCommentPayload.getIssue().getNumber());
 
-                pullRequest.comment("remove  milestone - WIP");
-                // remove milestone
-                pullRequest.getMilestone().delete();
+                pullRequest.comment("lgtm label will be added - WIP");
+                // add label and move the flow forward
             }
         }
     }
+
+    // find a way to create a alias, maybe create sub methods for one command?
+    @Command(name = "cancel", description = "Removes lgtm label")
+    static class RemoveLgtmLabelCommand implements PullRequestScopedCommands {
+
+        @Override
+        public void run(GHEventPayload.IssueComment issueCommentPayload) throws IOException {
+            // create annotation/predicate/default interface method @isPullRequest
+            if (issueCommentPayload.getIssue().isPullRequest()) {
+                GHPullRequest pullRequest = issueCommentPayload.getRepository()
+                        .getPullRequest(issueCommentPayload.getIssue().getNumber());
+
+                pullRequest.comment("lgtm label will be removed - WIP");
+                // remove label and move the flow forward
+            }
+        }
+    }
+
+    // add custom help message
+
+    // block merge - how can we do this?
 }

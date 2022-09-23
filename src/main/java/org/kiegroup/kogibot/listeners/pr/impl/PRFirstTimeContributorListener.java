@@ -1,10 +1,8 @@
 package org.kiegroup.kogibot.listeners.pr.impl;
 
 import java.io.IOException;
-import java.lang.invoke.MethodHandles;
 import java.util.Optional;
 
-import org.jboss.logging.Logger;
 import org.kiegroup.kogibot.config.KogibotConfiguration;
 import org.kiegroup.kogibot.listeners.pr.PRCommentConfigListener;
 import org.kiegroup.kogibot.util.Constants;
@@ -17,7 +15,6 @@ import io.quarkiverse.githubapp.ConfigFile;
 import io.quarkiverse.githubapp.event.PullRequest;
 
 public class PRFirstTimeContributorListener implements PRCommentConfigListener {
-    private static final Logger LOG = Logger.getLogger(MethodHandles.lookup().lookupClass().getName());
 
     public void onOpenedPullRequest(
             @PullRequest.Opened @PullRequest.Reopened @PullRequest.Synchronize GHEventPayload.PullRequest prPayLoad,

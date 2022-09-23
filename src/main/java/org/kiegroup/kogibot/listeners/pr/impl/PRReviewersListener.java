@@ -13,6 +13,7 @@ import org.kiegroup.kogibot.config.KogibotConfiguration;
 import org.kiegroup.kogibot.config.Reviewers;
 import org.kiegroup.kogibot.listeners.pr.PRConfigListener;
 import org.kiegroup.kogibot.util.Constants;
+import org.kiegroup.kogibot.util.ErrorUtils;
 import org.kiegroup.kogibot.util.MatchingPathsValuesUtils;
 import org.kohsuke.github.GHEventPayload;
 import org.kohsuke.github.GHPullRequest;
@@ -47,19 +48,19 @@ public class PRReviewersListener implements PRConfigListener {
     @Override
     public void apply(GHEventPayload.PullRequest prPayLoad, KogibotConfiguration kogibotConfiguration, GitHub github)
             throws IOException {
-        List<String> reviewers = retrieveReviewers(prPayLoad.getPullRequest(), kogibotConfiguration.getReviewers());
+        GHPullRequest pullRequest = prPayLoad.getPullRequest();
+        List<String> reviewers = retrieveReviewers(pullRequest, kogibotConfiguration.getReviewers());
         List<GHUser> ghUsers = retrieveGHUsers(github, reviewers);
 
         try {
-            prPayLoad.getPullRequest().requestReviewers(ghUsers);
+            pullRequest.requestReviewers(ghUsers);
         } catch (final IOException e) {
             StringBuilder msg = new StringBuilder("Error while requesting those reviewers:\n");
             for (GHUser user : ghUsers) {
                 msg.append("- `" + user.getLogin() + "`\n");
             }
-            msg.append("\nMessage:")
-                    .append("\n```JSON\n").append(e.getMessage()).append("\n```");
-            prPayLoad.getPullRequest().comment(msg.toString()).createReaction(ReactionContent.EYES);
+            ErrorUtils.logErrorAsPRComment(pullRequest, msg.toString(), e);
+            throw e;
         }
     }
 

@@ -1,4 +1,4 @@
-package org.kiegroup.kogibot.cli.commands.legacy;
+package org.kiegroup.kogibot.cli.commands.wip;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;

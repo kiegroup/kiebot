@@ -10,6 +10,7 @@ import org.kiegroup.kogibot.config.KogibotConfiguration;
 import org.kiegroup.kogibot.config.Labels;
 import org.kiegroup.kogibot.listeners.pr.PRConfigListener;
 import org.kiegroup.kogibot.util.Constants;
+import org.kiegroup.kogibot.util.LabelsUtils;
 import org.kiegroup.kogibot.util.Constants.DefaultLabels;
 import org.kiegroup.kogibot.util.MatchingPathsValuesUtils;
 import org.kohsuke.github.GHEventPayload;
@@ -45,28 +46,9 @@ public class PRLabelsListener implements PRConfigListener {
     @Override
     public void apply(GHEventPayload.PullRequest prPayLoad, KogibotConfiguration kogibotConfiguration, GitHub github)
             throws IOException {
-        List<String> labels = retrieveLabels(prPayLoad.getPullRequest(), kogibotConfiguration.getLabels());
-
-        GHRepository ghRepository = prPayLoad.getRepository();
-        List<GHLabel> ghLabels = ghRepository.listLabels().toList();
-        for (String labelName : labels) {
-            if (!ghLabels.stream().map(GHLabel::getName).anyMatch(l -> l.equals(labelName))) {
-                LOG.debugf("Label [%s] not found, creating...", labelName);
-
-                String color = null;
-                String description = null;
-                if (DefaultLabels.hasLabel(labelName)) {
-                    color = DefaultLabels.getLabel(labelName).getColor();
-                    description = DefaultLabels.getLabel(labelName).getDescription();
-                }
-                LOG.infof("Create label %s with color %s and description %s", labelName, color, description);
-                ghRepository.createLabel(labelName, color, description);
-            }
-
-            // Add label to PR
-            LOG.debugf("Applying label [%s].", labelName);
-            prPayLoad.getPullRequest().addLabels(labelName);
-        }
+        GHPullRequest pullRequest = prPayLoad.getPullRequest();
+        List<String> labels = retrieveLabels(pullRequest, kogibotConfiguration.getLabels());
+        LabelsUtils.addLabelsToPullRequest(labels, pullRequest);
     }
 
     public List<String> retrieveLabels(GHPullRequest pullRequest, Labels labelsCfg) throws IOException {
