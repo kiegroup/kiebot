@@ -59,7 +59,6 @@ public class PRReviewersListener implements PRConfigListener {
                 msg.append("- `" + user.getLogin() + "`\n");
             }
             ErrorUtils.logErrorAsPRComment(pullRequest, msg.toString(), e);
-            throw e;
         }
     }
 

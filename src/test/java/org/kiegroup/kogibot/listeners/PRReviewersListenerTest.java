@@ -10,6 +10,7 @@ import org.kiegroup.kogibot.GHTestUtils;
 import org.kohsuke.github.GHEvent;
 import org.kohsuke.github.GHIssueComment;
 import org.kohsuke.github.GHPullRequest;
+import org.kohsuke.github.GHRepository;
 import org.kohsuke.github.GHUser;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mockito;
@@ -32,6 +33,8 @@ public class PRReviewersListenerTest {
                 .given()
                 .github(mocks -> {
                     GHPullRequest prMock = mocks.pullRequest(PULL_REQUEST_ID);
+                    GHRepository repoMock = Mockito.mock(GHRepository.class);
+                    Mockito.when(prMock.getRepository()).thenReturn(repoMock);
 
                     mocks.configFile(".kogibot-config.yml").fromClasspath(CONFIG_FILE_PATH);
                     GHTestUtils.mockGHPullRequestFileDetail(prMock, "anypath");
@@ -61,6 +64,8 @@ public class PRReviewersListenerTest {
                 .given()
                 .github(mocks -> {
                     GHPullRequest prMock = mocks.pullRequest(PULL_REQUEST_ID);
+                    GHRepository repoMock = Mockito.mock(GHRepository.class);
+                    Mockito.when(prMock.getRepository()).thenReturn(repoMock);
 
                     mocks.configFile(".kogibot-config.yml").fromClasspath(CONFIG_FILE_PATH);
                     GHTestUtils.mockGHPullRequestFileDetail(prMock, "path1/anypath");

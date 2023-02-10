@@ -30,7 +30,9 @@ public class PRFirtimeContributorListenerTest {
         GitHubAppTesting
                 .given()
                 .github(mocks -> {
-                    GHRepository repoMock = mocks.repository("kogitobot-playground");
+                    GHPullRequest prMock = mocks.pullRequest(PULL_REQUEST_ID);
+                    GHRepository repoMock = Mockito.mock(GHRepository.class);
+                    Mockito.when(prMock.getRepository()).thenReturn(repoMock);
 
                     mocks.configFile(".kogibot-config.yml").fromClasspath(CONFIG_FILE_PATH);
                     GHTestUtils.mockContributors(repoMock, "anyuser", "anotheruser");
@@ -50,7 +52,9 @@ public class PRFirtimeContributorListenerTest {
         GitHubAppTesting
                 .given()
                 .github(mocks -> {
-                    GHRepository repoMock = mocks.repository("kogitobot-playground");
+                    GHPullRequest prMock = mocks.pullRequest(PULL_REQUEST_ID);
+                    GHRepository repoMock = Mockito.mock(GHRepository.class);
+                    Mockito.when(prMock.getRepository()).thenReturn(repoMock);
 
                     mocks.configFile(".kogibot-config.yml").fromClasspath(CONFIG_FILE_PATH);
                     GHTestUtils.mockContributors(repoMock, "anyuser", "anotheruser", PR_USER_LOGIN);

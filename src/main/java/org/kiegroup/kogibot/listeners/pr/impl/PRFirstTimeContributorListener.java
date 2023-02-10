@@ -7,6 +7,7 @@ import org.kiegroup.kogibot.config.KogibotConfiguration;
 import org.kiegroup.kogibot.listeners.pr.PRCommentConfigListener;
 import org.kiegroup.kogibot.util.Constants;
 import org.kohsuke.github.GHEventPayload;
+import org.kohsuke.github.GHPullRequest;
 import org.kohsuke.github.GHRepository;
 import org.kohsuke.github.GHRepository.Contributor;
 import org.kohsuke.github.GitHub;
@@ -37,10 +38,10 @@ public class PRFirstTimeContributorListener implements PRCommentConfigListener {
     public void applyWithComment(String comment, GHEventPayload.PullRequest prPayLoad,
             KogibotConfiguration kogibotConfiguration,
             GitHub github) throws IOException {
-        String author = prPayLoad.getPullRequest().getUser().getLogin();
-        if (isFirstTimeContributor(prPayLoad.getRepository(), author)) {
-            prPayLoad.getPullRequest()
-                    .comment(String.format("Hello @%s\n%s", author, comment));
+        GHPullRequest pullRequest = prPayLoad.getPullRequest();
+        String author = pullRequest.getUser().getLogin();
+        if (isFirstTimeContributor(pullRequest.getRepository(), author)) {
+            pullRequest.comment(String.format("Hello @%s\n%s", author, comment));
         }
 
     }

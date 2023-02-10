@@ -29,7 +29,8 @@ public class PRLabelsListenerTest {
                 .given()
                 .github(mocks -> {
                     GHPullRequest prMock = mocks.pullRequest(PULL_REQUEST_ID);
-                    GHRepository repoMock = mocks.repository("kogitobot-playground");
+                    GHRepository repoMock = Mockito.mock(GHRepository.class);
+                    Mockito.when(prMock.getRepository()).thenReturn(repoMock);
 
                     mocks.configFile(".kogibot-config.yml").fromClasspath(CONFIG_FILE_PATH);
                     GHTestUtils.mockGHPullRequestFileDetail(prMock, "anypath");
@@ -53,7 +54,8 @@ public class PRLabelsListenerTest {
                 .given()
                 .github(mocks -> {
                     GHPullRequest prMock = mocks.pullRequest(PULL_REQUEST_ID);
-                    GHRepository repoMock = mocks.repository("kogitobot-playground");
+                    GHRepository repoMock = Mockito.mock(GHRepository.class);
+                    Mockito.when(prMock.getRepository()).thenReturn(repoMock);
 
                     mocks.configFile(".kogibot-config.yml").fromClasspath(CONFIG_FILE_PATH);
                     GHTestUtils.mockGHPullRequestFileDetail(prMock, "path1/anypath");
@@ -65,7 +67,7 @@ public class PRLabelsListenerTest {
                 .then()
                 .github(mocks -> {
                     GHPullRequest prMock = mocks.pullRequest(PULL_REQUEST_ID);
-                    GHRepository repoMock = mocks.repository("kogitobot-playground");
+                    GHRepository repoMock = prMock.getRepository();
                     Mockito.verify(repoMock).createLabel("path1", null, null);
                     Mockito.verify(prMock).addLabels("path1");
                 });
@@ -77,7 +79,8 @@ public class PRLabelsListenerTest {
                 .given()
                 .github(mocks -> {
                     GHPullRequest prMock = mocks.pullRequest(PULL_REQUEST_ID);
-                    GHRepository repoMock = mocks.repository("kogitobot-playground");
+                    GHRepository repoMock = Mockito.mock(GHRepository.class);
+                    Mockito.when(prMock.getRepository()).thenReturn(repoMock);
 
                     mocks.configFile(".kogibot-config.yml").fromClasspath(CONFIG_FILE_PATH);
                     GHTestUtils.mockGHPullRequestFileDetail(prMock, "path1/anypath");
@@ -101,7 +104,8 @@ public class PRLabelsListenerTest {
                 .given()
                 .github(mocks -> {
                     GHPullRequest prMock = mocks.pullRequest(PULL_REQUEST_ID);
-                    GHRepository repoMock = mocks.repository("kogitobot-playground");
+                    GHRepository repoMock = Mockito.mock(GHRepository.class);
+                    Mockito.when(prMock.getRepository()).thenReturn(repoMock);
 
                     mocks.configFile(".kogibot-config.yml").fromClasspath(CONFIG_FILE_PATH);
                     GHTestUtils.mockGHPullRequestFileDetail(prMock, "existing-default-label");
@@ -113,7 +117,7 @@ public class PRLabelsListenerTest {
                 .then()
                 .github(mocks -> {
                     GHPullRequest prMock = mocks.pullRequest(PULL_REQUEST_ID);
-                    GHRepository repoMock = mocks.repository("kogitobot-playground");
+                    GHRepository repoMock = prMock.getRepository();
                     Mockito.verify(repoMock).createLabel("needs review :mag:", "c12645", "Pull Request that needs reviewers");
                     Mockito.verify(prMock).addLabels("needs review :mag:");
                 });
