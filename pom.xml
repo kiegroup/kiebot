@@ -13,9 +13,9 @@
     <!-- components version -->
     <quarkus.platform.artifact-id>quarkus-bom</quarkus.platform.artifact-id>
     <quarkus.platform.group-id>io.quarkus.platform</quarkus.platform.group-id>
-    <quarkus.platform.version>2.12.2.Final</quarkus.platform.version>
-    <quarkus.github.app.command.airline.version>1.13.2</quarkus.github.app.command.airline.version>
-    <quarkus-github-app.version>1.13.2</quarkus-github-app.version>
+    <quarkus.platform.version>2.14.2.Final</quarkus.platform.version>
+    <quarkus.github.app.command.airline.version>1.16.0</quarkus.github.app.command.airline.version>
+    <quarkus-github-app.version>1.16.0</quarkus-github-app.version>
     <assertj.version>3.23.1</assertj.version>
     <!-- plugins -->
     <surefire-plugin.version>3.0.0-M7</surefire-plugin.version>
@@ -134,7 +134,7 @@
           <dependency>
             <artifactId>kogito-ide-config</artifactId>
             <groupId>org.kie.kogito</groupId>
-            <version>1.27.0.Final</version>
+            <version>1.33.0.Final</version>
           </dependency>
         </dependencies>
         <configuration>

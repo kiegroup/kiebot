@@ -11,12 +11,9 @@ import org.kiegroup.kogibot.config.Labels;
 import org.kiegroup.kogibot.listeners.pr.PRConfigListener;
 import org.kiegroup.kogibot.util.Constants;
 import org.kiegroup.kogibot.util.LabelsUtils;
-import org.kiegroup.kogibot.util.Constants.DefaultLabels;
 import org.kiegroup.kogibot.util.MatchingPathsValuesUtils;
 import org.kohsuke.github.GHEventPayload;
-import org.kohsuke.github.GHLabel;
 import org.kohsuke.github.GHPullRequest;
-import org.kohsuke.github.GHRepository;
 import org.kohsuke.github.GitHub;
 
 import io.quarkiverse.githubapp.ConfigFile;

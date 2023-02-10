@@ -28,7 +28,7 @@ public class BackportCommand implements PullRequestScopedCommands {
     public void run(GHEventPayload.IssueComment issueCommentPayload) throws IOException {
         GHPullRequest pullRequest = getPullRequest(issueCommentPayload);
         if (branch != null) {
-            LabelsUtils.addLabelsToPullRequest(Arrays.asList("backport-" + branch), pullRequest);   
+            LabelsUtils.addLabelsToPullRequest(Arrays.asList("backport-" + branch), pullRequest);
         } else {
             ErrorUtils.logErrorAsPRComment(pullRequest, "No branch specified to backport\n Run `/bot help` for more information");
         }

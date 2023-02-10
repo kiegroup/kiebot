@@ -19,7 +19,6 @@ import org.kohsuke.github.GHEventPayload;
 import org.kohsuke.github.GHPullRequest;
 import org.kohsuke.github.GHUser;
 import org.kohsuke.github.GitHub;
-import org.kohsuke.github.ReactionContent;
 
 import io.quarkiverse.githubapp.ConfigFile;
 import io.quarkiverse.githubapp.event.PullRequest;
