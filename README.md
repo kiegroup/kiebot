@@ -1,7 +1,6 @@
 # kiebot
 
-![Kiebot - Java 11](https://github.com/kiegroup/kiebot/actions/workflows/push.yml/badge.svg) 
-
+![Kiebot - Java 11](https://github.com/kiegroup/kiebot/actions/workflows/push.yml/badge.svg)
 
 This project uses Quarkus, the Supersonic Subatomic Java Framework.
 

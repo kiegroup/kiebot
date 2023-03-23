@@ -1,0 +1,46 @@
+apiVersion: app.kiegroup.org/v1beta1
+kind: KogitoBuild
+metadata:
+  name: kiebot
+spec:
+  type: RemoteSource
+  #env:
+  # env can be used to set variables during build
+  #- name: MY_CUSTOM_ENV
+  #  value: "my value"
+  gitSource:
+    uri: 'https://github.com/kiegroup/kiebot'
+  runtimeImage: quay.io/kiegroup/kogito-runtime-jvm:1.35
+---
+apiVersion: app.kiegroup.org/v1beta1
+kind: KogitoRuntime
+metadata:
+  name: kiebot
+spec:
+  replicas: 1
+  env:
+    - name: QUARKUS_GITHUB_APP_APP_ID
+      valueFrom:
+        secretKeyRef:
+          key: GITHUB_APP_ID
+          name: kiebot-secret
+    - name: QUARKUS_GITHUB_APP_APP_NAME
+      valueFrom:
+        secretKeyRef:
+          key: GITHUB_APP_NAME
+          name: kiebot-secret
+    - name: QUARKUS_GITHUB_APP_WEBHOOK_PROXY_URL
+      valueFrom:
+        secretKeyRef:
+          key: GITHUB_APP_WEBHOOK_PROXY_URL
+          name: kiebot-secret
+    - name: QUARKUS_GITHUB_APP_WEBHOOK_SECRET
+      valueFrom:
+        secretKeyRef:
+          key: GITHUB_APP_WEBHOOK_SECRET
+          name: kiebot-secret
+    - name: QUARKUS_GITHUB_APP_PRIVATE_KEY
+      valueFrom:
+        secretKeyRef:
+          key: GITHUB_APP_PRIVATE_KEY
+          name: kiebot-secret
