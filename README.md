@@ -1,8 +1,6 @@
 # kiebot
 
-![Kiebot - Java 11](https://github.com/spolti/kiebot/actions/workflows/main-merge-java-11.yml/badge.svg) 
-![Kiebot - Java 16](https://github.com/spolti/kiebot/actions/workflows/main-merge-java-16.yml/badge.svg)
-![Kiebot - Java 17](https://github.com/spolti/kiebot/actions/workflows/main-merge-java-17.yml/badge.svg)
+![Kiebot - Java 11](https://github.com/kiegroup/kiebot/actions/workflows/push.yml/badge.svg) 
 
 
 This project uses Quarkus, the Supersonic Subatomic Java Framework.
