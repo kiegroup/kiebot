@@ -10,11 +10,11 @@
 #
 # Then, build the image with:
 #
-# docker build -f src/main/docker/Dockerfile.native-micro -t quarkus/kogibot .
+# docker build -f src/main/docker/Dockerfile.native-micro -t quarkus/kiebot .
 #
 # Then run the container using:
 #
-# docker run -i --rm -p 8080:8080 quarkus/kogibot
+# docker run -i --rm -p 8080:8080 quarkus/kiebot
 #
 ###
 FROM quay.io/quarkus/quarkus-micro-image:1.0

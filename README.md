@@ -1,8 +1,6 @@
 # kiebot
 
-![Kogibot - Java 11](https://github.com/spolti/kogibot/actions/workflows/main-merge-java-11.yml/badge.svg) 
-![Kogibot - Java 16](https://github.com/spolti/kogibot/actions/workflows/main-merge-java-16.yml/badge.svg)
-![Kogibot - Java 17](https://github.com/spolti/kogibot/actions/workflows/main-merge-java-17.yml/badge.svg)
+![Kiebot - Java 11](https://github.com/kiegroup/kiebot/actions/workflows/push.yml/badge.svg) 
 
 
 This project uses Quarkus, the Supersonic Subatomic Java Framework.
@@ -11,11 +9,10 @@ If you want to learn more about Quarkus, please visit its website: https://quark
 
 ## Labels
 
-Kogibot will by default create default labels if not present, default labels can be seen [here](src/main/java/org/kiegroup/kogibot/util/Labels.java)
+Kiebot will by default create default labels if not present, default labels can be seen [here](src/main/java/org/kiegroup/kiebot/util/Labels.java)
 The bot will also add any label flagged as required on every new pull request, by default, the only label required is "needs review".
 
-
-## Running Kogitbot locally
+## Running Kiebot locally
 
 Create e .env file on the project's root directory with the following environment variables:
 

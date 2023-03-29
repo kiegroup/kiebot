@@ -1,4 +1,4 @@
-name: Kogibot CI
+name: Kiebot CI
 
 on: pull_request
 jobs:

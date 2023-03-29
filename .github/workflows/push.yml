@@ -1,4 +1,4 @@
-name: Kogibot - [main] Java 11 build
+name: Kiebot - [main] Java 11 build
 
 on:
   push:
