@@ -12,7 +12,7 @@ import com.github.rvesse.airline.annotations.Command;
 //         commands = {RebaseCommand.RebasePullRequestCommand.class},
 //         defaultCommand = RebaseCommand.RebasePullRequestCommand.class)
 // @CliOptions(defaultCommandOptions = @CommandOptions(scope = CommandOptions.CommandScope.PULL_REQUESTS))
-// @Team ({"developers"})
+// @Team ({"@kiegroup/developers"})
 public class RebaseCommand {
 
     @Command(name = "rebase", description = "Reopen Pull Request", hidden = true)
