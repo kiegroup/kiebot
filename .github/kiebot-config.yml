@@ -1,0 +1,22 @@
+reviewers:
+  defaults:
+  - spolti
+  - davidesalerno
+  - radtriste
+  # matching_paths:
+  # - paths:
+  #   - path1/*
+  #   values:
+  #   - user1
+  # - paths:
+  #   - path2/*
+  #   values:
+  #   - user21
+  #   - user22
+  # - paths:
+  #   - Jenkinsfile3*
+  #   values:
+  #   - radtriste
+  #   - user3
+comments:
+  first_time_contribute: Welcome to the KieBot ! Your Pull Request will be reviewed asap !
