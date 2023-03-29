@@ -14,7 +14,7 @@ import com.github.rvesse.airline.annotations.Command;
 //                 LgtmCommand.RemoveLgtmLabelCommand.class},
 //         defaultCommand = LgtmCommand.AddLgtmLabelCommand.class)
 // @CliOptions(defaultCommandOptions = @CommandOptions(scope = CommandOptions.CommandScope.PULL_REQUESTS))
-// @Team ({"gatekeepers"})
+// @Team ({"@kiegroup/gatekeepers"})
 public class LgtmCommand {
 
     // define LgtmLabel on Label class
