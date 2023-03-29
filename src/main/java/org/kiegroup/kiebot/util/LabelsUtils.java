@@ -2,6 +2,7 @@ package org.kiegroup.kiebot.util;
 
 import java.io.IOException;
 import java.lang.invoke.MethodHandles;
+import java.util.Arrays;
 import java.util.List;
 
 import org.jboss.logging.Logger;
@@ -13,7 +14,11 @@ import org.kohsuke.github.GHRepository;
 public class LabelsUtils {
     private static final Logger LOG = Logger.getLogger(MethodHandles.lookup().lookupClass().getName());
 
-    public static final void addLabelsToPullRequest(List<String> labels, GHPullRequest pullRequest) throws IOException {
+    public static final void addLabelsToPullRequest(GHPullRequest pullRequest, String... labels) throws IOException {
+        addLabelsToPullRequest(pullRequest, Arrays.asList(labels));
+    }
+
+    public static final void addLabelsToPullRequest(GHPullRequest pullRequest, List<String> labels) throws IOException {
         GHRepository ghRepository = pullRequest.getRepository();
         List<GHLabel> ghLabels = ghRepository.listLabels().toList();
         for (String labelName : labels) {
@@ -33,6 +38,18 @@ public class LabelsUtils {
             // Add label to PR
             LOG.debugf("Applying label [%s].", labelName);
             pullRequest.addLabels(labelName);
+        }
+    }
+
+    public static final void removeLabelsFromPullRequest(GHPullRequest pullRequest, String... labels) throws IOException {
+        removeLabelsFromPullRequest(pullRequest, Arrays.asList(labels));
+    }
+
+    public static final void removeLabelsFromPullRequest(GHPullRequest pullRequest, List<String> labels) throws IOException {
+        GHRepository ghRepository = pullRequest.getRepository();
+        for (String labelName : labels) {
+            LOG.debugf("Removing label [%s].", labelName);
+            pullRequest.removeLabels(labelName);
         }
     }
 }

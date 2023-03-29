@@ -1,7 +1,6 @@
 package org.kiegroup.kiebot.cli.commands;
 
 import java.io.IOException;
-import java.util.Arrays;
 
 import org.kiegroup.kiebot.util.ErrorUtils;
 import org.kiegroup.kiebot.util.LabelsUtils;
@@ -30,7 +29,7 @@ public class BackportCommand implements PullRequestScopedCommands {
     public void run(GHEventPayload.IssueComment issueCommentPayload) throws IOException {
         GHPullRequest pullRequest = getPullRequest(issueCommentPayload);
         if (branch != null) {
-            LabelsUtils.addLabelsToPullRequest(Arrays.asList("backport-" + branch), pullRequest);
+            LabelsUtils.addLabelsToPullRequest(pullRequest, "backport-" + branch);
         } else {
             ErrorUtils.logErrorAsPRComment(pullRequest, "No branch specified to backport\n Run `/bot help` for more information");
         }
