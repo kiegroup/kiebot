@@ -1,0 +1,9 @@
+// check the PR patterns, look for a configuration file on the target repository
+// e.g. kiebot.yaml
+// it can contain the desire pattern for:
+// 1 - Tittle pattern
+// 2 - Description patter
+// 3 - PR commit message
+// Bot will automatically not approve this PR until this condition is not satisfied.
+// Use the util.PullRequestPatternAnalyzer class to implement it.
+// Client config is held on the config.ClientConfig class.
