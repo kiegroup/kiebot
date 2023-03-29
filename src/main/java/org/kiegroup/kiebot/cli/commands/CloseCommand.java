@@ -14,7 +14,6 @@ import io.quarkiverse.githubapp.command.airline.CommandOptions;
 @Cli(name = "/close", defaultCommand = CloseCommand.class)
 @CliOptions(defaultCommandOptions = @CommandOptions(scope = CommandOptions.CommandScope.PULL_REQUESTS))
 @Command(name = "close", description = "or `/close`. Close current Pull Request")
-//@Team ({"AUTHORS", "CONTRIBUTORS"})
 public class CloseCommand implements PullRequestScopedCommands {
 
     @Override

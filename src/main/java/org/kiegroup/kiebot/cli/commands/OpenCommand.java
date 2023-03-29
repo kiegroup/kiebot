@@ -1,9 +1,7 @@
-package org.kiegroup.kiebot.cli.commands.wip;
+package org.kiegroup.kiebot.cli.commands;
 
 import java.io.IOException;
 
-import org.kiegroup.kiebot.cli.commands.CloseCommand;
-import org.kiegroup.kiebot.cli.commands.PullRequestScopedCommands;
 import org.kohsuke.github.GHEventPayload;
 import org.kohsuke.github.GHPullRequest;
 
@@ -12,11 +10,12 @@ import com.github.rvesse.airline.annotations.Command;
 
 import io.quarkiverse.githubapp.command.airline.CliOptions;
 import io.quarkiverse.githubapp.command.airline.CommandOptions;
+import io.quarkiverse.githubapp.command.airline.Team;
 
 @Cli(name = "/reopen", defaultCommand = CloseCommand.class)
 @CliOptions(defaultCommandOptions = @CommandOptions(scope = CommandOptions.CommandScope.PULL_REQUESTS), aliases = { "/open" })
-@Command(name = "open", description = "(not yet working ...) or `/open` or `/reopen`. Open current Pull Request")
-//@Team ({"AUTHORS", "CONTRIBUTORS"})
+@Command(name = "open", description = "`or /open` or `/reopen`. Open current Pull Request")
+@Team("developers")
 public class OpenCommand implements PullRequestScopedCommands {
 
     @Override

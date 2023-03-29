@@ -15,16 +15,11 @@ import org.kohsuke.github.GHWorkflowRun;
 import org.kohsuke.github.ReactionContent;
 
 import com.github.rvesse.airline.annotations.Arguments;
-import com.github.rvesse.airline.annotations.Cli;
-import com.github.rvesse.airline.annotations.Command;
 
-import io.quarkiverse.githubapp.command.airline.CliOptions;
-import io.quarkiverse.githubapp.command.airline.CommandOptions;
-
-@Cli(name = "/test", defaultCommand = TestCommand.class)
-@CliOptions(defaultCommandOptions = @CommandOptions(scope = CommandOptions.CommandScope.PULL_REQUESTS), aliases = { "/retest" })
-@Command(name = "test",
-        description = "(not yet fully implemented) or `/test` or `/retest`. Launch GHA Workflows. You can specific the workflow name to (re)start (Workflow names with whitespaces should be entered in quotes). Add `failed` if you want to retest all failed workflows.")
+// @Cli(name = "/test", defaultCommand = TestCommand.class)
+// @CliOptions(defaultCommandOptions = @CommandOptions(scope = CommandOptions.CommandScope.PULL_REQUESTS), aliases = { "/retest" })
+// @Command(name = "test",
+//         description = "(not yet fully implemented) or `/test` or `/retest`. Launch GHA Workflows. You can specific the workflow name to (re)start (Workflow names with whitespaces should be entered in quotes). Add `failed` if you want to retest all failed workflows.")
 // @Team ({"AUTHORS", "CONTRIBUTORS"})
 public class TestCommand implements PullRequestScopedCommands {
     private static final Logger LOG = Logger.getLogger(MethodHandles.lookup().lookupClass().getName());

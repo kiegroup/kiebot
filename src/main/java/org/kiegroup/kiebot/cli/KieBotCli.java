@@ -5,8 +5,8 @@ import java.io.IOException;
 import org.kiegroup.kiebot.cli.KieBotCli.HelpCommand;
 import org.kiegroup.kiebot.cli.commands.BackportCommand;
 import org.kiegroup.kiebot.cli.commands.CloseCommand;
+import org.kiegroup.kiebot.cli.commands.OpenCommand;
 import org.kiegroup.kiebot.cli.commands.PullRequestScopedCommands;
-import org.kiegroup.kiebot.cli.commands.wip.OpenCommand;
 import org.kiegroup.kiebot.cli.commands.wip.TestCommand;
 import org.kohsuke.github.GHEventPayload;
 
