@@ -16,6 +16,7 @@ import com.github.rvesse.airline.annotations.Command;
 import io.quarkiverse.githubapp.command.airline.AbstractHelpCommand;
 import io.quarkiverse.githubapp.command.airline.CliOptions;
 import io.quarkiverse.githubapp.command.airline.CommandOptions;
+import io.quarkiverse.githubapp.command.airline.Team;
 
 @Cli(
         name = "@bot",
@@ -29,6 +30,7 @@ import io.quarkiverse.githubapp.command.airline.CommandOptions;
 @CliOptions(
         defaultCommandOptions = @CommandOptions(scope = CommandOptions.CommandScope.PULL_REQUESTS),
         aliases = { "@kiebot", "/bot", "/kiebot" })
+@Team("developers")
 class KieBotCli {
 
     @Command(name = "help", description = "Print help")

@@ -14,6 +14,7 @@ import com.github.rvesse.airline.annotations.Command;
 //                 MilestoneCommand.MilestoneRemoveCommand.class},
 //         defaultCommand = MilestoneCommand.MilestoneAddCommand.class)
 // @CliOptions(defaultCommandOptions = @CommandOptions(scope = CommandOptions.CommandScope.PULL_REQUESTS))
+// @Team ({"gatekeepers"})
 public class MilestoneCommand {
 
     @Command(name = "add", description = "Adds milestone")
