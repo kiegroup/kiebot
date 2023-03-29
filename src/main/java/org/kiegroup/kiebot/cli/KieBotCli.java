@@ -24,7 +24,6 @@ import io.quarkiverse.githubapp.command.airline.Team;
                 BackportCommand.class,
                 CloseCommand.class,
                 OpenCommand.class,
-                TestCommand.class,
                 HelpCommand.class
         }, description = "Kiebot main CLI. Run `/bot help` or `@bot help` for getting all available commands.")
 @CliOptions(
