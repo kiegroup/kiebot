@@ -14,7 +14,7 @@ import com.github.rvesse.airline.annotations.Command;
 //                 HoldCommand.HoldAddCommand.class},
 //         defaultCommand = HoldCommand.HoldAddCommand.class)
 // @CliOptions(defaultCommandOptions = @CommandOptions(scope = CommandOptions.CommandScope.PULL_REQUESTS))
-// @Team ({"@kiegroup/developers"})
+// @Team ({"developers"})
 public class HoldCommand {
 
     @Command(name = "add", description = "Put the Pull Request on hold status")

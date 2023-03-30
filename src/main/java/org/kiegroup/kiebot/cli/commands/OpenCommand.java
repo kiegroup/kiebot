@@ -15,7 +15,7 @@ import io.quarkiverse.githubapp.command.airline.Team;
 @Cli(name = "/open", defaultCommand = OpenCommand.class)
 @CliOptions(defaultCommandOptions = @CommandOptions(scope = CommandOptions.CommandScope.PULL_REQUESTS), aliases = { "/reopen" })
 @Command(name = "open", description = "`or /open` or `/reopen`. Open current Pull Request")
-@Team("@kiegroup/developers")
+@Team("developers")
 public class OpenCommand implements PullRequestScopedCommands {
 
     @Override

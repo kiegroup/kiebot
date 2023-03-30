@@ -20,7 +20,7 @@ import com.github.rvesse.airline.annotations.Arguments;
 // @CliOptions(defaultCommandOptions = @CommandOptions(scope = CommandOptions.CommandScope.PULL_REQUESTS), aliases = { "/retest" })
 // @Command(name = "test",
 //         description = "(not yet fully implemented) or `/test` or `/retest`. Launch GHA Workflows. You can specific the workflow name to (re)start (Workflow names with whitespaces should be entered in quotes). Add `failed` if you want to retest all failed workflows.")
-// @Team ({"@kiegroup/developers"})
+// @Team ({"developers"})
 public class TestCommand implements PullRequestScopedCommands {
     private static final Logger LOG = Logger.getLogger(MethodHandles.lookup().lookupClass().getName());
 
