@@ -12,7 +12,7 @@ import io.quarkiverse.githubapp.command.airline.CliOptions;
 import io.quarkiverse.githubapp.command.airline.CommandOptions;
 import io.quarkiverse.githubapp.command.airline.Team;
 
-@Cli(name = "/open", defaultCommand = CloseCommand.class)
+@Cli(name = "/open", defaultCommand = OpenCommand.class)
 @CliOptions(defaultCommandOptions = @CommandOptions(scope = CommandOptions.CommandScope.PULL_REQUESTS), aliases = { "/reopen" })
 @Command(name = "open", description = "`or /open` or `/reopen`. Open current Pull Request")
 @Team("@kiegroup/developers")
