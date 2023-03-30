@@ -17,7 +17,7 @@ import com.github.rvesse.airline.annotations.Command;
 //         defaultCommand = ApproveCommand.ApprovePullRequestCommand.class
 // )
 // @CliOptions(defaultCommandOptions = @CommandOptions(scope = CommandOptions.CommandScope.PULL_REQUESTS))
-//@Team ({"@kiegroup/developers"})
+//@Team ({"developers"})
 public class ApproveCommand {
 
     // define ApprovedLabel on Label class
