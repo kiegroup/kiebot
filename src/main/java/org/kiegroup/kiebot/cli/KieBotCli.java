@@ -28,7 +28,7 @@ import io.quarkiverse.githubapp.command.airline.Team;
 @CliOptions(
         defaultCommandOptions = @CommandOptions(scope = CommandOptions.CommandScope.PULL_REQUESTS),
         aliases = { "@kiebot", "/bot", "/kiebot" })
-@Team("developers")
+@Team({"developers","gatekeepers"})
 class KieBotCli {
 
     @Command(name = "help", description = "Print help")
