@@ -34,3 +34,8 @@ spec:
         secretKeyRef:
           key: GITHUB_APP_PRIVATE_KEY
           name: kiebot-secret
+    - name: QUARKUS_GITHUB_APP_WEBHOOK_SECRET
+      valueFrom:
+        secretKeyRef:
+          key: GITHUB_APP_WEBHOOK_SECRET
+          name: kiebot-secret
