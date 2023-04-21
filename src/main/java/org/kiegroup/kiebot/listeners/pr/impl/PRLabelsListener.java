@@ -45,7 +45,7 @@ public class PRLabelsListener implements PRConfigListener {
             throws IOException {
         GHPullRequest pullRequest = prPayLoad.getPullRequest();
         List<String> labels = retrieveLabels(pullRequest, kiebotConfiguration.getLabels());
-        LabelsUtils.addLabelsToPullRequest(labels, pullRequest);
+        LabelsUtils.addLabelsToPullRequest(pullRequest, labels);
     }
 
     public List<String> retrieveLabels(GHPullRequest pullRequest, Labels labelsCfg) throws IOException {

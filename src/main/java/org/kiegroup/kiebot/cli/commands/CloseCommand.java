@@ -21,11 +21,7 @@ public class CloseCommand implements PullRequestScopedCommands {
     @Override
     public void run(GHEventPayload.IssueComment issueCommentPayload) throws IOException {
         GHPullRequest pullRequest = getPullRequest(issueCommentPayload);
-
-        // add a message about the PR closure.
         pullRequest.close();
-
-        // TODO delete branch ?
     }
 
 }
